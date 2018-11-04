@@ -8,11 +8,20 @@
 *
 */
 
-class PluginChangemail_ModuleUser_MapperUser extends PluginChangemail_Inherit_ModuleUser_MapperUser {
-	
-    
-    public function AddChangemail($oChangemail) {
-		$sql = "REPLACE ".Config::Get('db.table.changemail')."
+class PluginChangemail_ModuleUser_MapperUser extends PluginChangemail_Inherit_ModuleUser_MapperUser
+{
+
+
+    public function UpdateChangemail($oChangemail)
+    {
+        return $this->AddChangemail($oChangemail);
+    }
+
+    public function AddChangemail($oChangemail)
+    {
+        $table = Config::Get('db.table.changemail');
+
+        $sql = "REPLACE {$table}
 			SET
 				changemail_code = ? ,
 				user_id = ? ,
@@ -22,25 +31,23 @@ class PluginChangemail_ModuleUser_MapperUser extends PluginChangemail_Inherit_Mo
 				changemail_is_used = ?,
                 changemail_mail_to = ?
 		";
-		return $this->oDb->query($sql,$oChangemail->getCode(),$oChangemail->getUserId(),$oChangemail->getDateAdd(),$oChangemail->getDateUsed(),$oChangemail->getDateExpire(),$oChangemail->getIsUsed(),$oChangemail->getChangeMailTo());
-	}
+        return $this->oDb->query($sql, $oChangemail->getCode(), $oChangemail->getUserId(), $oChangemail->getDateAdd(), $oChangemail->getDateUsed(), $oChangemail->getDateExpire(), $oChangemail->getIsUsed(), $oChangemail->getChangeMailTo());
+    }
 
-	public function UpdateChangemail($oChangemail) {
-		return $this->AddChangemail($oChangemail);
-	}
+    public function GetChangemailByCode($sCode)
+    {
+        $table = Config::Get('db.table.changemail');
 
-	public function GetChangemailByCode($sCode) {
-		$sql = "SELECT
+        $sql = "SELECT
 					*
 				FROM
-					".Config::Get('db.table.changemail')."
+					{$table}
 				WHERE
 					changemail_code = ?";
-		if ($aRow=$this->oDb->selectRow($sql,$sCode)) {
-			return new PluginChangemail_ModuleUser_EntityChangemail($aRow);
-		}
-		return null;
-	}
+        if ($aRow = $this->oDb->selectRow($sql, $sCode)) {
+            return new PluginChangemail_ModuleUser_EntityChangemail($aRow);
+        }
+        return null;
+    }
 
 }
-?>

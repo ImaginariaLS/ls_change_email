@@ -14,4 +14,3 @@ $config = array();
 Config::Set('db.table.changemail', '___db.table.prefix___changemail');
 
 return $config;
-?>

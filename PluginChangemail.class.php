@@ -9,29 +9,33 @@
  * ----------------------------------------------------------------------------
  */
 
-if (! class_exists ( "Plugin" )) {
-	die ( "Hacking attemp!" );
+if (!class_exists("Plugin")) {
+    die ("Hacking attemp!");
 }
 
-class Pluginchangemail extends Plugin {
-    
-    protected $aInherits = array( 
-       'action'  =>array('ActionSettings','ActionLogin'),
-       'module'  =>array('ModuleUser'),
-       'mapper'  =>array('ModuleUser_MapperUser'=>'_ModuleUser_MapperUser')
+class Pluginchangemail extends Plugin
+{
+
+    protected $aInherits = array(
+        'action' => array('ActionSettings', 'ActionLogin'),
+        'module' => array('ModuleUser'),
+        'mapper' => array('ModuleUser_MapperUser' => '_ModuleUser_MapperUser')
     );
-    
-	public function Activate() {
-		if(file_exists($file = dirname(__FILE__) . "/install.sql"))
-			$this->ExportSQL ($file);
-		return true;
-	}
-	
-	public function Deactivate() {
-		return true;
-	}
-	
-	public function Init() {
-		
-	}
+
+    public function Activate()
+    {
+        if (file_exists($file = dirname(__FILE__) . "/install.sql"))
+            $this->ExportSQL($file);
+        return true;
+    }
+
+    public function Deactivate()
+    {
+        return true;
+    }
+
+    public function Init()
+    {
+
+    }
 }

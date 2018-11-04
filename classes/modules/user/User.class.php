@@ -1,4 +1,5 @@
 <?php
+
 /*-------------------------------------------------------
 *
 *	Plugin "Changemail"
@@ -7,18 +8,25 @@
 *	Site: http://lsmods.ru
 *
 */
-class PluginChangemail_ModuleUser extends PluginChangemail_Inherit_ModuleUser {
 
-    public function AddChangemail($oChangemail) {
-		return $this->oMapper->AddChangemail($oChangemail);
-	}
-    
-	public function UpdateChangemail($oChangemail) {
-		return $this->oMapper->UpdateChangemail($oChangemail);
-	}
-	public function GetChangemailByCode($sCode) {
-		return $this->oMapper->GetChangemailByCode($sCode);
-	}
+class PluginChangemail_ModuleUser extends PluginChangemail_Inherit_ModuleUser
+{
+
+    public function AddChangemail($oChangemail)
+    {
+        return $this->oMapper->AddChangemail($oChangemail);
+    }
+
+    public function UpdateChangemail($oChangemail)
+    {
+        return $this->oMapper->UpdateChangemail($oChangemail);
+    }
+
+    public function GetChangemailByCode($sCode)
+    {
+        return $this->oMapper->GetChangemailByCode($sCode);
+    }
 
 }
+
 ?>
