@@ -9,9 +9,10 @@
  * ----------------------------------------------------------------------------
  */
 
-if (!class_exists("Plugin")) {
-    die ("Hacking attemp!");
+if (!class_exists('Plugin')) {
+    die(__FILE__ . ' : Hacking attemp!');
 }
+
 
 class Pluginchangemail extends Plugin
 {
